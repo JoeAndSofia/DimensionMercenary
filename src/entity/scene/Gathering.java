@@ -6,6 +6,7 @@ import util.consts.EntityConsts;
 public class Gathering extends SceneObject{
 	
 	public int population = 0;
+	public boolean habitable = true;
 
 	public Gathering(){
 		this.type = EntityConsts.TYPE_SCENE_GATHERING;
