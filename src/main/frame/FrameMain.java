@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import com.sun.corba.se.spi.orbutil.fsm.FSM;
 import com.sun.corba.se.spi.orbutil.fsm.Input;
@@ -24,11 +26,13 @@ public class FrameMain extends JFrame{
 	
 	private Timer timer = new Timer();
 	
-	private JMenuBar menu = null;
-	private JMenu mGame = null;
-	private JMenu mOperate = null;
+	//menu
+	public JMenuBar menu = null;
+	public JMenu mGame = null;
+	public JMenu mOperate = null;
 	
-	
+	//panels
+	public JPanel varietyPanel = null;
 	
 	public FrameMain(){
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -43,22 +47,7 @@ public class FrameMain extends JFrame{
 		
 		this.add(new PanelMap(timer));
 		
-		menu = new JMenuBar();
-		mGame = new JMenu("Game");
-		JMenuItem mGameExit = new JMenuItem("Exit");
-		mGameExit.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		mGame.add(mGameExit);
-		
-		mOperate = new JMenu("Operate");
-		
-		menu.add(mGame);
-		menu.add(mOperate);
-		this.setJMenuBar(menu);
+		initMenu();
 		
 		
 		
@@ -73,9 +62,44 @@ public class FrameMain extends JFrame{
 		});
 	}
 	
-
+	private void initMenu(){
+		if(menu==null){
+			menu = new JMenuBar();
+		}
+		
+		
+		
+		mGame = new JMenu("Game (G)");
+		mGame.setMnemonic('g');
+		JMenuItem mGameExit = new JMenuItem("Exit");
+		mGameExit.setMnemonic('x');
+		mGameExit.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		mGame.add(mGameExit);
+		
+		
+		
+		mOperate = new JMenu("Operate (O)");
+		
+		
+		
+		menu.add(mGame);
+		menu.add(mOperate);
+		this.setJMenuBar(menu);
+	}
+	
+	private void initVarietyPanel(){
+		if(varietyPanel==null){
+			varietyPanel = new JPanel();
+		}
+	}
+	
 	public static void main(String[] args){
-		JFrame main = new FrameMain();
-		main.setVisible(true);
+		JFrame mainFrame = new FrameMain();
+		mainFrame.setVisible(true);
 	}
 }
