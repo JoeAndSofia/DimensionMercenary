@@ -17,9 +17,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import com.sun.corba.se.spi.orbutil.fsm.FSM;
-import com.sun.corba.se.spi.orbutil.fsm.Input;
-
 import main.panel.PanelMap;
 
 public class FrameMain extends JFrame{
@@ -69,7 +66,7 @@ public class FrameMain extends JFrame{
 		
 		
 		
-		mGame = new JMenu("Game (G)");
+		mGame = new JMenu("Game");
 		mGame.setMnemonic('g');
 		JMenuItem mGameExit = new JMenuItem("Exit");
 		mGameExit.setMnemonic('x');
@@ -83,8 +80,8 @@ public class FrameMain extends JFrame{
 		
 		
 		
-		mOperate = new JMenu("Operate (O)");
-		
+		mOperate = new JMenu("Operate");
+		mOperate.setMnemonic('o');
 		
 		
 		menu.add(mGame);
