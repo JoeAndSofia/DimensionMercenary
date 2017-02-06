@@ -22,6 +22,7 @@ import main.panel.PanelMap;
 public class FrameMain extends JFrame{
 	
 	private Timer timer = new Timer();
+	private boolean saved = false;
 	
 	//menu
 	public JMenuBar menu = null;
@@ -50,10 +51,18 @@ public class FrameMain extends JFrame{
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
+				if(!saved){
+					saveData();
+					saved = true;
+				}
 				System.out.println("Data Saving"); 
 			}
 			
 			public void windowClosed(WindowEvent e){
+				if(!saved){
+					saveData();
+					saved = true;
+				}
 				System.out.println("Data Saved");
 			}
 		});
@@ -68,11 +77,15 @@ public class FrameMain extends JFrame{
 		
 		mGame = new JMenu("Game");
 		mGame.setMnemonic('g');
-		JMenuItem mGameExit = new JMenuItem("Exit");
+		JMenuItem mGameExit = new JMenuItem("Exit and Save");
 		mGameExit.setMnemonic('x');
 		mGameExit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(!saved){
+					saveData();
+					saved = true;
+				}
 				System.exit(0);
 			}
 		});
@@ -93,6 +106,10 @@ public class FrameMain extends JFrame{
 		if(varietyPanel==null){
 			varietyPanel = new JPanel();
 		}
+	}
+	
+	private void saveData(){
+		
 	}
 	
 	public static void main(String[] args){
