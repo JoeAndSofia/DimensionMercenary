@@ -28,6 +28,7 @@ public class FrameMain extends JFrame{
 	public JMenuBar menu = null;
 	public JMenu mGame = null;
 	public JMenu mOperate = null;
+	public JMenu mConfig = null;
 	
 	//panels
 	public JPanel varietyPanel = null;
@@ -45,61 +46,76 @@ public class FrameMain extends JFrame{
 		
 		this.add(new PanelMap(timer));
 		
-		initMenu();
+		initMenuBar();
 		
 		
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
-				if(!saved){
-					saveData();
-					saved = true;
-				}
-				System.out.println("Data Saving"); 
+				saveData(); 
 			}
 			
 			public void windowClosed(WindowEvent e){
-				if(!saved){
-					saveData();
-					saved = true;
-				}
-				System.out.println("Data Saved");
+				saveData();
 			}
 		});
 	}
 	
-	private void initMenu(){
+	private void initMenuBar(){
 		if(menu==null){
 			menu = new JMenuBar();
 		}
 		
+		initMenuGame();
+		initMenuOperate();
+		initMenuConfig();
 		
-		
-		mGame = new JMenu("Game");
+		this.setJMenuBar(menu);
+	}
+	
+	private void initMenuGame(){
+		if(mGame==null){
+			mGame = new JMenu("Game");	
+		}
 		mGame.setMnemonic('g');
+		
 		JMenuItem mGameExit = new JMenuItem("Exit and Save");
 		mGameExit.setMnemonic('x');
 		mGameExit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(!saved){
-					saveData();
-					saved = true;
-				}
+				saveData();
 				System.exit(0);
 			}
 		});
 		mGame.add(mGameExit);
-		
-		
-		
-		mOperate = new JMenu("Operate");
-		mOperate.setMnemonic('o');
-		
-		
 		menu.add(mGame);
+	}
+	
+	private void initMenuOperate(){
+		if(mOperate==null){
+			mOperate = new JMenu("Operate");	
+		}
+		mOperate.setMnemonic('o');
 		menu.add(mOperate);
-		this.setJMenuBar(menu);
+	}
+	
+	private void initMenuConfig(){
+		if(mConfig==null){
+			mConfig = new JMenu("Config");	
+		}
+		mConfig.setMnemonic('c');
+		
+		JMenuItem mConfigHotkey = new JMenuItem("Hot Key");
+		mConfigHotkey.setMnemonic('h');
+		mConfigHotkey.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Hot Key");
+			}
+		});
+		mConfig.add(mConfigHotkey);
+		menu.add(mConfig);
 	}
 	
 	private void initVarietyPanel(){
@@ -109,7 +125,16 @@ public class FrameMain extends JFrame{
 	}
 	
 	private void saveData(){
-		
+		if(!saved){
+			try{
+				saved = true;
+				//TODO
+				System.out.println("Data Saved");
+			}catch(Exception ex){
+				saved = false;
+				System.out.println("Data Not Saved");
+			}
+		}
 	}
 	
 	public static void main(String[] args){
