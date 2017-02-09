@@ -8,7 +8,7 @@ import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
-import entity.basic.GameObject;
+import entity.runtime.basic.GameObject;
 
 public class PanelMap extends JPanel{
 	

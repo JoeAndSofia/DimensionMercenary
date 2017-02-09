@@ -1,7 +1,7 @@
-package entity.scene;
+package entity.runtime.scene;
 
+import entity.runtime.basic.GameObject;
 import util.consts.EntityConsts;
-import entity.basic.GameObject;
 
 public class SceneObject extends GameObject {
 	

@@ -1,4 +1,4 @@
-package entity.basic;
+package entity.runtime.basic;
 
 import javax.swing.JComponent;
 

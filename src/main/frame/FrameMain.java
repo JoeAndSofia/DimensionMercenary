@@ -102,7 +102,7 @@ public class FrameMain extends JFrame{
 	
 	private void initMenuConfig(){
 		if(mConfig==null){
-			mConfig = new JMenu("Config");	
+			mConfig = new JMenu("Config");
 		}
 		mConfig.setMnemonic('c');
 		
