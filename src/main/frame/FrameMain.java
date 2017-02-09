@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 
 import javax.swing.Action;
@@ -17,12 +19,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import entity.database.keys.KeyAction;
 import main.panel.PanelMap;
 
 public class FrameMain extends JFrame{
 	
 	private Timer timer = new Timer();
 	private boolean saved = false;
+	public Map<String, KeyAction> savedKeyActions = new HashMap<String, KeyAction>();
+	public Map<String, KeyAction> savingKeyActions = new HashMap<String, KeyAction>();
 	
 	//menu
 	public JMenuBar menu = null;
@@ -46,6 +51,8 @@ public class FrameMain extends JFrame{
 		
 		this.add(new PanelMap(timer));
 		
+		initKeyActions();
+		
 		initMenuBar();
 		
 		
@@ -59,6 +66,10 @@ public class FrameMain extends JFrame{
 				saveData();
 			}
 		});
+	}
+	
+	private void initKeyActions(){
+		
 	}
 	
 	private void initMenuBar(){
