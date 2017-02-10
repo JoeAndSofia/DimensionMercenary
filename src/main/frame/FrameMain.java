@@ -27,7 +27,6 @@ public class FrameMain extends JFrame{
 	private Timer timer = new Timer();
 	private boolean saved = false;
 	public Map<String, KeyAction> savedKeyActions = new HashMap<String, KeyAction>();
-	public Map<String, KeyAction> savingKeyActions = new HashMap<String, KeyAction>();
 	
 	//menu
 	public JMenuBar menu = null;
@@ -69,6 +68,7 @@ public class FrameMain extends JFrame{
 	}
 	
 	private void initKeyActions(){
+		
 		
 	}
 	
