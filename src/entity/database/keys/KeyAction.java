@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
 
-public class KeyAction extends AbstractAction{
+public abstract class KeyAction extends AbstractAction{
 
 	public String key = null;
 	
@@ -17,8 +17,4 @@ public class KeyAction extends AbstractAction{
 		this.key = key;
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
-	}
 }

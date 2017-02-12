@@ -6,26 +6,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 
-import javax.swing.Action;
+import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 
-import entity.database.keys.KeyAction;
 import main.panel.PanelMap;
+import main.panel.PanelOption;
+import entity.database.keys.KeyAction;
 
 public class FrameMain extends JFrame{
 	
 	private Timer timer = new Timer();
 	private boolean saved = false;
+	
+	public Map<String, Boolean> settingsCheckBox = new HashMap<String, Boolean>();
+	public Map<String, String[]> settingsRadio = new HashMap<String, String[]>();
+	public Map<String, Map<String, Boolean>> settingsMultiOption = new HashMap<String, Map<String, Boolean>>();
+	
 	public Map<String, KeyAction> savedKeyActions = new HashMap<String, KeyAction>();
 	
 	//menu
@@ -50,7 +54,7 @@ public class FrameMain extends JFrame{
 		
 		this.add(new PanelMap(timer));
 		
-		initKeyActions();
+		initDefaultKeyActions();
 		
 		initMenuBar();
 		
@@ -67,9 +71,40 @@ public class FrameMain extends JFrame{
 		});
 	}
 	
-	private void initKeyActions(){
+	private void initDefaultKeyActions(){
+		//Battle KeyAction :
+		//ctrl O : Battle Option
+		savedKeyActions.put("battleOption", new KeyAction("battleOption", null, "Battle Option", "ctrl o") {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				PanelOption panelOption = new PanelOption();
+			}
+		});
 		
+		//ctrl M : Battle Map
+		savedKeyActions.put("battleMap", new KeyAction("battleMap", null, "Battle Map", "ctrl m") {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//TODO				
+			}
+		});
 		
+		//Global KeyAction :
+		//ctrl shirt O : Global Option
+		savedKeyActions.put("globalOption", new KeyAction("globalOption", null, "Global Option", "ctrl shirt o") {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//TODO
+			}
+		});		
+		
+		//ctrl shift m : Global Map
+		savedKeyActions.put("globalMap", new KeyAction("globalOption", null, "Global Map", "ctrl shift m") {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//TODO	
+			}
+		});
 	}
 	
 	private void initMenuBar(){
