@@ -26,9 +26,6 @@ public class FrameMain extends JFrame{
 	private Timer timer = new Timer();
 	private boolean saved = false;
 	
-	public Map<String, Boolean> settingsCheckBox = new HashMap<String, Boolean>();
-	public Map<String, String[]> settingsRadio = new HashMap<String, String[]>();
-	public Map<String, Map<String, Boolean>> settingsMultiOption = new HashMap<String, Map<String, Boolean>>();
 	
 	public Map<String, KeyAction> savedKeyActions = new HashMap<String, KeyAction>();
 	
