@@ -3,8 +3,6 @@ package entity.runtime.scene;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.consts.EntityConsts;
-
 
 public class Team extends SceneObject {
 	
@@ -16,8 +14,8 @@ public class Team extends SceneObject {
 	public List<Movement> movements = new ArrayList<Movement>();
 	
 	public Team(){
-		this.type = EntityConsts.TYPE_SCENE_TEAM;
-		this.side = EntityConsts.SIDE_NATURE;
+		this.type = TYPE_SCENE_TEAM;
+		this.side = SIDE_NATURE;
 	}
 	
 	static class Movement{

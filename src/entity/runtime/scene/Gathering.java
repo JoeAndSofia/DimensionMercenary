@@ -1,7 +1,5 @@
 package entity.runtime.scene;
 
-import util.consts.EntityConsts;
-
 
 public class Gathering extends SceneObject{
 	
@@ -9,8 +7,8 @@ public class Gathering extends SceneObject{
 	public boolean habitable = true;
 
 	public Gathering(){
-		this.type = EntityConsts.TYPE_SCENE_GATHERING;
-		this.side = EntityConsts.SIDE_NATURE;
+		this.type = TYPE_SCENE_GATHERING;
+		this.side = SIDE_NATURE;
 	}
 	
 	public static void main(String[] args){
