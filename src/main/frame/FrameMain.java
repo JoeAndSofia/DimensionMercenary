@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 
@@ -18,18 +20,28 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import main.panel.PanelMap;
-import main.panel.PanelOption;
+import main.panel.PanelSetting;
 import entity.database.keys.KeyAction;
+import entity.setting.Setting;
 
 public class FrameMain extends JFrame{
 	
 	private Timer timer = new Timer();
 	private boolean saved = false;
 	
-	
+	//actions
 	public Map<String, KeyAction> savedKeyActions = new HashMap<String, KeyAction>();
 	
-	//menu
+	//battle settings
+	public List<Setting> displaySettings = new ArrayList<Setting>();
+	public List<Setting> processSettings = new ArrayList<Setting>();
+	
+	//global settings
+	public List<Setting> notifySettings = new ArrayList<Setting>();
+	public List<Setting> dataLoadSettings = new ArrayList<Setting>();
+	public List<Setting> dataSaveSettings = new ArrayList<Setting>();
+	
+	//menus
 	public JMenuBar menu = null;
 	public JMenu mGame = null;
 	public JMenu mOperate = null;
@@ -70,16 +82,16 @@ public class FrameMain extends JFrame{
 	
 	private void initDefaultKeyActions(){
 		//Battle KeyAction :
-		//ctrl O : Battle Option
-		savedKeyActions.put("battleOption", new KeyAction("battleOption", null, "Battle Option", "ctrl o") {
+		//ctrl T : Battle Setting
+		savedKeyActions.put("battleSetting", new KeyAction("battleSetting", null, "Battle Setting", "ctrl T") {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				PanelOption panelOption = new PanelOption();
+				PanelSetting panelSetting = new PanelSetting();
 			}
 		});
 		
 		//ctrl M : Battle Map
-		savedKeyActions.put("battleMap", new KeyAction("battleMap", null, "Battle Map", "ctrl m") {
+		savedKeyActions.put("battleMap", new KeyAction("battleMap", null, "Battle Map", "ctrl M") {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO				
@@ -87,16 +99,16 @@ public class FrameMain extends JFrame{
 		});
 		
 		//Global KeyAction :
-		//ctrl shirt O : Global Option
-		savedKeyActions.put("globalOption", new KeyAction("globalOption", null, "Global Option", "ctrl shirt o") {
+		//ctrl shirt T : Global Setting
+		savedKeyActions.put("globalSetting", new KeyAction("globalSetting", null, "Global Setting", "ctrl shirt T") {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO
 			}
 		});		
 		
-		//ctrl shift m : Global Map
-		savedKeyActions.put("globalMap", new KeyAction("globalOption", null, "Global Map", "ctrl shift m") {
+		//ctrl shift M : Global Map
+		savedKeyActions.put("globalMap", new KeyAction("globalOption", null, "Global Map", "ctrl shift M") {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO	
