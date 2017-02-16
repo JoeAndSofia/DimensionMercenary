@@ -13,12 +13,14 @@ import java.util.Map;
 import java.util.Timer;
 
 import javax.swing.AbstractAction;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import main.dialog.DialogKeySetting;
 import main.panel.PanelMap;
 import main.panel.PanelSetting;
 import entity.database.keys.KeyAction;
@@ -35,11 +37,13 @@ public class FrameMain extends JFrame{
 	//battle settings
 	public List<Setting> displaySettings = new ArrayList<Setting>();
 	public List<Setting> processSettings = new ArrayList<Setting>();
+	public JDialog battleSettingDialog = null;
 	
 	//global settings
 	public List<Setting> notifySettings = new ArrayList<Setting>();
 	public List<Setting> dataLoadSettings = new ArrayList<Setting>();
 	public List<Setting> dataSaveSettings = new ArrayList<Setting>();
+	public JDialog globalSettingDialog = null;
 	
 	//menus
 	public JMenuBar menu = null;
@@ -67,7 +71,7 @@ public class FrameMain extends JFrame{
 		
 		initMenuBar();
 		
-		
+		initDialogSetting();
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
@@ -167,11 +171,16 @@ public class FrameMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Hot Key");
-				
 			}
 		});
 		mConfig.add(mConfigHotkey);
 		menu.add(mConfig);
+	}
+	
+	private void initDialogSetting(){
+		if(battleSettingDialog==null){
+			battleSettingDialog = new DialogKeySetting();
+		}
 	}
 	
 	private void initVarietyPanel(){
