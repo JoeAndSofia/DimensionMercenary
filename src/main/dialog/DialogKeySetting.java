@@ -1,22 +1,22 @@
-package main.frame;
+package main.dialog;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 
 import entity.database.keys.KeyAction;
 
-public class FrameKeySetting extends JFrame{
+public class DialogKeySetting extends JDialog{
 	
 	public Map<String, KeyAction> savedKeyActions = new HashMap<String, KeyAction>();
 	public Map<String, KeyAction> savingKeyActions = new HashMap<String, KeyAction>();
 	
-	public FrameKeySetting(){
+	public DialogKeySetting(){
 		
 	}
 	
-	public FrameKeySetting(Map<String, KeyAction> savedKeyActions){
+	public DialogKeySetting(Map<String, KeyAction> savedKeyActions){
 		this.savedKeyActions = savedKeyActions;
 		this.savingKeyActions = savedKeyActions;
 		

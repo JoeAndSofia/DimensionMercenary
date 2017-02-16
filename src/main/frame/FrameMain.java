@@ -43,7 +43,7 @@ public class FrameMain extends JFrame{
 	
 	//menus
 	public JMenuBar menu = null;
-	public JMenu mGame = null;
+	public JMenu mMain = null;
 	public JMenu mOperate = null;
 	public JMenu mConfig = null;
 	
@@ -121,30 +121,30 @@ public class FrameMain extends JFrame{
 			menu = new JMenuBar();
 		}
 		
-		initMenuGame();
+		initMenuMain();
 		initMenuOperate();
 		initMenuConfig();
 		
 		this.setJMenuBar(menu);
 	}
 	
-	private void initMenuGame(){
-		if(mGame==null){
-			mGame = new JMenu("Game");	
+	private void initMenuMain(){
+		if(mMain==null){
+			mMain = new JMenu("Main");	
 		}
-		mGame.setMnemonic('g');
+		mMain.setMnemonic('m');
 		
-		JMenuItem mGameExit = new JMenuItem("Exit and Save");
-		mGameExit.setMnemonic('x');
-		mGameExit.addActionListener(new ActionListener(){
+		JMenuItem mMainExit = new JMenuItem("Exit and Save");
+		mMainExit.setMnemonic('x');
+		mMainExit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				saveData();
 				System.exit(0);
 			}
 		});
-		mGame.add(mGameExit);
-		menu.add(mGame);
+		mMain.add(mMainExit);
+		menu.add(mMain);
 	}
 	
 	private void initMenuOperate(){
@@ -167,6 +167,7 @@ public class FrameMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Hot Key");
+				
 			}
 		});
 		mConfig.add(mConfigHotkey);
