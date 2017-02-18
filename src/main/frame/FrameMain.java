@@ -179,7 +179,11 @@ public class FrameMain extends JFrame{
 	
 	private void initDialogSetting(){
 		if(battleSettingDialog==null){
-			battleSettingDialog = new DialogKeySetting();
+			List<List<Setting>> settingList = new ArrayList<List<Setting>>();
+			settingList.add(displaySettings);
+			settingList.add(processSettings);
+			battleSettingDialog = new DialogKeySetting(settingList);
+//			battleSettingDialog
 		}
 	}
 	

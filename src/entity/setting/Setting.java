@@ -6,6 +6,7 @@ public class Setting {
 	public static final int RADIO_BUTTON = 2;
 	public static final int CHECK_OPTION = 3;
 	
-	public int type;
+	public int type = UNDEFINED;
 	public String name = null;
+	public String description = null;
 }
