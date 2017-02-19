@@ -11,12 +11,11 @@ import entity.setting.Setting;
 
 public class DialogKeySetting extends JDialog{
 	
-	public static List<List<Setting>> originalSettingLists = null;
-	public static List<List<Setting>> modifiedSettingLists = null;
+	public List<List<Setting>> originalSettingLists = null;
+	public List<List<Setting>> modifiedSettingLists = null;
 	
 	public DialogKeySetting(List<List<Setting>> settingLists){
 		this.originalSettingLists = settingLists;
 		this.modifiedSettingLists = settingLists;
 	}
-	
 }
