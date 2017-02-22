@@ -45,6 +45,9 @@ public class FrameMain extends JFrame{
 	public List<Setting> dataSaveSettings = new ArrayList<Setting>();
 	public JDialog globalSettingDialog = null;
 	
+	//system settings
+	public JDialog keySettingDialog = null;
+	
 	//menus
 	public JMenuBar menu = null;
 	public JMenu mMain = null;
@@ -120,12 +123,11 @@ public class FrameMain extends JFrame{
 			}
 		});
 		
-		//Key Setting
+		//ctrl K : Key Setting
 		savedKeyActions.put("keySetting", new KeyAction("keySetting", null, "Key Setting", "ctrl K"){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+//				keySettingDialog = new DialogKeySetting(savedKeyActions);
 			}
 		});
 	}
