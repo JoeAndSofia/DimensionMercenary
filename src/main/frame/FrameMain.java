@@ -75,7 +75,7 @@ public class FrameMain extends JFrame{
 		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
-				saveData(); 
+				saveData();
 			}
 			
 			public void windowClosed(WindowEvent e){
@@ -91,6 +91,7 @@ public class FrameMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				PanelSetting panelSetting = new PanelSetting();
+				
 			}
 		});
 		
@@ -116,6 +117,15 @@ public class FrameMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO	
+			}
+		});
+		
+		//Key Setting
+		savedKeyActions.put("keySetting", new KeyAction("keySetting", null, "Key Setting", "ctrl K"){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
