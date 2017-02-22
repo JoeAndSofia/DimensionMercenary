@@ -1,24 +1,21 @@
 package main.dialog;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JDialog;
 
 import entity.database.keys.KeyAction;
+import entity.setting.Setting;
 
 public class DialogKeySetting extends JDialog{
 	
-	public Map<String, KeyAction> savedKeyActions = new HashMap<String, KeyAction>();
-	public Map<String, KeyAction> savingKeyActions = new HashMap<String, KeyAction>();
+	public List<List<Setting>> originalSettingLists = null;
+	public List<List<Setting>> modifiedSettingLists = null;
 	
-	public DialogKeySetting(){
-		
-	}
-	
-	public DialogKeySetting(Map<String, KeyAction> savedKeyActions){
-		this.savedKeyActions = savedKeyActions;
-		this.savingKeyActions = savedKeyActions;
-		
+	public DialogKeySetting(List<List<Setting>> settingLists){
+		this.originalSettingLists = settingLists;
+		this.modifiedSettingLists = settingLists;
 	}
 }
