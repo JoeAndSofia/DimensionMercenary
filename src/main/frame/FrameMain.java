@@ -92,7 +92,7 @@ public class FrameMain extends JFrame{
 		//ctrl T : Battle Setting
 		savedKeyActions.put("battleSetting", new KeyAction("battleSetting", null, "Battle Setting", "ctrl T") {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent ae) {
 				PanelSetting panelSetting = new PanelSetting();
 				
 			}
@@ -101,7 +101,7 @@ public class FrameMain extends JFrame{
 		//ctrl M : Battle Map
 		savedKeyActions.put("battleMap", new KeyAction("battleMap", null, "Battle Map", "ctrl M") {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent ae) {
 				//TODO				
 			}
 		});
@@ -110,7 +110,7 @@ public class FrameMain extends JFrame{
 		//ctrl shirt T : Global Setting
 		savedKeyActions.put("globalSetting", new KeyAction("globalSetting", null, "Global Setting", "ctrl shirt T") {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent ae) {
 				//TODO
 			}
 		});		
@@ -118,7 +118,7 @@ public class FrameMain extends JFrame{
 		//ctrl shift M : Global Map
 		savedKeyActions.put("globalMap", new KeyAction("globalOption", null, "Global Map", "ctrl shift M") {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent ae) {
 				//TODO	
 			}
 		});
@@ -126,7 +126,7 @@ public class FrameMain extends JFrame{
 		//ctrl K : Key Setting
 		savedKeyActions.put("keySetting", new KeyAction("keySetting", null, "Key Setting", "ctrl K"){
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent ae) {
 //				keySettingDialog = new DialogKeySetting(savedKeyActions);
 			}
 		});
@@ -150,16 +150,16 @@ public class FrameMain extends JFrame{
 		}
 		mMain.setMnemonic('m');
 		
-		JMenuItem mMainExit = new JMenuItem("Exit and Save");
-		mMainExit.setMnemonic('x');
-		mMainExit.addActionListener(new ActionListener(){
+		JMenuItem miMainExit = new JMenuItem("Exit and Save");
+		miMainExit.setMnemonic('x');
+		miMainExit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				saveData();
 				System.exit(0);
 			}
 		});
-		mMain.add(mMainExit);
+		mMain.add(miMainExit);
 		menu.add(mMain);
 	}
 	
@@ -177,15 +177,43 @@ public class FrameMain extends JFrame{
 		}
 		mConfig.setMnemonic('c');
 		
-		JMenuItem mConfigHotkey = new JMenuItem("Hot Key");
-		mConfigHotkey.setMnemonic('h');
-		mConfigHotkey.addActionListener(new ActionListener() {
+		JMenu mConfigBattle = new JMenu("Battle");
+		mConfigBattle.setMnemonic('b');
+		
+		JMenuItem miConfigBattleSetting = new JMenuItem("Setting");
+		miConfigBattleSetting.setMnemonic('s');
+		miConfigBattleSetting.addActionListener(savedKeyActions.get("battleSetting"));
+		mConfigBattle.add(miConfigBattleSetting);
+		
+		JMenuItem miConfigBattleMap = new JMenuItem("Map");
+		miConfigBattleMap.setMnemonic('m');
+		miConfigBattleMap.addActionListener(savedKeyActions.get("battleMap"));
+		mConfigBattle.add(miConfigBattleMap);
+		
+		JMenu mConfigGlobal = new JMenu("Global");
+		mConfigGlobal.setMnemonic('g');
+		
+		JMenuItem miConfigGlobalSetting = new JMenuItem("Setting");
+		miConfigBattleSetting.setMnemonic('s');
+		miConfigBattleSetting.addActionListener(savedKeyActions.get("battleSetting"));
+		mConfigGlobal.add(miConfigGlobalSetting);
+		
+		JMenuItem miConfigGlobalMap = new JMenuItem("Map");
+		miConfigBattleMap.setMnemonic('m');
+		miConfigBattleMap.addActionListener(savedKeyActions.get("battleMap"));
+		mConfigGlobal.add(miConfigGlobalMap);
+		
+		JMenuItem miConfigHotkey = new JMenuItem("Hot Key");
+		miConfigHotkey.setMnemonic('h');
+		miConfigHotkey.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Hot Key");
 			}
 		});
-		mConfig.add(mConfigHotkey);
+		mConfig.add(miConfigHotkey);
+		mConfig.add(mConfigBattle);
+		mConfig.add(mConfigGlobal);
 		menu.add(mConfig);
 	}
 	
