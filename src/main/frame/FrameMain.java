@@ -13,14 +13,18 @@ import java.util.Map;
 import java.util.Timer;
 
 import javax.swing.AbstractAction;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import main.dialog.DialogKeySetting;
+import main.panel.PanelMain;
 import main.panel.PanelMap;
 import main.panel.PanelSetting;
 import entity.database.keys.KeyAction;
@@ -55,6 +59,7 @@ public class FrameMain extends JFrame{
 	public JMenu mConfig = null;
 	
 	//panels
+	public JPanel mainPanel = null;
 	public JPanel varietyPanel = null;
 	
 	public FrameMain(){
@@ -68,7 +73,7 @@ public class FrameMain extends JFrame{
 		this.setTitle("Dimension Mercenary");
 		this.setUndecorated(true);
 		
-		this.add(new PanelMap(timer));
+		this.add(mainPanel = new PanelMain(timer));
 		
 		initDefaultKeyActions();
 		
@@ -130,6 +135,13 @@ public class FrameMain extends JFrame{
 //				keySettingDialog = new DialogKeySetting(savedKeyActions);
 			}
 		});
+	}
+	
+	private void initInputMap(){
+		InputMap im = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		for(Map.Entry<String, KeyAction> entry : savedKeyActions.entrySet()){
+			im.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
+		}
 	}
 	
 	private void initMenuBar(){
