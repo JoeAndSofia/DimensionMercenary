@@ -146,11 +146,12 @@ public class FrameMain extends JFrame{
 		});
 	}
 	
-	private void initInputMap(){
+	private void initInputMapAndActionMap(){
 		InputMap im = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		for(Map.Entry<String, KeyAction> entry : savedKeyActions.entrySet()){
 			im.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
 		}
+		
 	}
 	
 	private void initMenuBar(){
