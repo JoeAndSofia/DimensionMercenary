@@ -17,6 +17,10 @@ public class PanelMap extends JPanel{
 	private Map<Point, GameObject> scene = new HashMap<Point, GameObject>();
 	private Map<Point, GameObject> vary = new HashMap<Point, GameObject>();
 	
+	public PanelMap(){
+		
+	}
+	
 	public PanelMap(Timer timer){
 		timer.schedule(new TimerTask() {
 			

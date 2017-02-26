@@ -67,6 +67,7 @@ public class FrameMain extends JFrame{
 		Dimension fullScreen = toolkit.getScreenSize();
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLayout(null);
 		this.setLocation(0, 0);
 		this.setResizable(false);
 		this.setSize(fullScreen);
@@ -99,7 +100,8 @@ public class FrameMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				PanelSetting panelSetting = new PanelSetting();
-				
+				add(panelSetting);
+				pl("battleSetting");
 			}
 		});
 		
@@ -107,7 +109,9 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("battleMap", new KeyAction("battleMap", null, "Battle Map", "ctrl M") {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				//TODO				
+				PanelMap panelMap = new PanelMap();
+				add(panelMap);
+				pl("battleMap");
 			}
 		});
 		
@@ -116,7 +120,9 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("globalSetting", new KeyAction("globalSetting", null, "Global Setting", "ctrl shirt T") {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				//TODO
+				PanelSetting panelSetting = new PanelSetting();
+				add(panelSetting);
+				pl("globalSetting");
 			}
 		});		
 		
@@ -124,7 +130,9 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("globalMap", new KeyAction("globalOption", null, "Global Map", "ctrl shift M") {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				//TODO	
+				PanelMap panelMap = new PanelMap();
+				add(panelMap);
+				pl("globalMap");
 			}
 		});
 		
@@ -132,7 +140,8 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("keySetting", new KeyAction("keySetting", null, "Key Setting", "ctrl K"){
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-//				keySettingDialog = new DialogKeySetting(savedKeyActions);
+				keySettingDialog = new DialogKeySetting(null);
+				pl("keySetting");
 			}
 		});
 	}
@@ -206,13 +215,13 @@ public class FrameMain extends JFrame{
 		mConfigGlobal.setMnemonic('g');
 		
 		JMenuItem miConfigGlobalSetting = new JMenuItem("Setting");
-		miConfigBattleSetting.setMnemonic('s');
-		miConfigBattleSetting.addActionListener(savedKeyActions.get("battleSetting"));
+		miConfigGlobalSetting.setMnemonic('s');
+		miConfigGlobalSetting.addActionListener(savedKeyActions.get("battleSetting"));
 		mConfigGlobal.add(miConfigGlobalSetting);
 		
 		JMenuItem miConfigGlobalMap = new JMenuItem("Map");
-		miConfigBattleMap.setMnemonic('m');
-		miConfigBattleMap.addActionListener(savedKeyActions.get("battleMap"));
+		miConfigGlobalMap.setMnemonic('m');
+		miConfigGlobalMap.addActionListener(savedKeyActions.get("battleMap"));
 		mConfigGlobal.add(miConfigGlobalMap);
 		
 		JMenuItem miConfigHotkey = new JMenuItem("Hot Key");
@@ -261,5 +270,12 @@ public class FrameMain extends JFrame{
 	public static void main(String[] args){
 		JFrame mainFrame = new FrameMain();
 		mainFrame.setVisible(true);
+	}
+	
+	public static void pl(Object o){
+		System.out.println(o);
+	}
+	public static void p(Object o){
+		System.out.print(o);
 	}
 }
