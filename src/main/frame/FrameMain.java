@@ -59,6 +59,8 @@ public class FrameMain extends JFrame{
 	public JMenu mOperate = null;
 	public JMenu mConfig = null;
 	
+	//button
+	
 	//panels
 	public JPanel mainPanel = null;
 	public JPanel varietyPanel = null;
@@ -82,8 +84,10 @@ public class FrameMain extends JFrame{
 		this.add(mainPanel = new PanelMain());
 		
 		initDefaultKeyActions();
-		initInputMapAndActionMap();
+		
 		initMenuBar();
+		
+		initInputMapAndActionMap();
 		
 		initDialogSetting();
 		
@@ -152,12 +156,14 @@ public class FrameMain extends JFrame{
 	}
 	
 	private void initInputMapAndActionMap(){
-		InputMap im = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+//		InputMap im1 = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		InputMap im2 = mainPanel.getInputMap(JComponent.WHEN_FOCUSED);
 		ActionMap am = mainPanel.getActionMap();
 		for(Map.Entry<String, KeyAction> entry : savedKeyActions.entrySet()){
 			pl(entry.getKey() + " ---- " + entry.getValue().defaultKeys);
 
-			im.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
+//			im1.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
+			im2.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
 			am.put(entry.getKey(), entry.getValue());
 		}
 	}
