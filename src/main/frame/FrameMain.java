@@ -15,6 +15,7 @@ import java.util.Timer;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -60,6 +61,7 @@ public class FrameMain extends JFrame{
 	public JMenu mConfig = null;
 	
 	//button
+	public JButton testButton = new JButton("TestButton");
 	
 	//panels
 	public JPanel mainPanel = null;
@@ -68,7 +70,7 @@ public class FrameMain extends JFrame{
 	public FrameMain(){
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension fullScreen = toolkit.getScreenSize();
-		Dimension testDimension = new Dimension(200, 200);
+		Dimension testDimension = new Dimension(800, 600);
 		
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -80,10 +82,14 @@ public class FrameMain extends JFrame{
 		this.setTitle("Dimension Mercenary");
 		this.setUndecorated(true);
 		
-//		this.add(mainPanel = new PanelMain(timer));
-		this.add(mainPanel = new PanelMain());
+		this.add(mainPanel = new PanelMain(timer));
+//		this.add(mainPanel = new PanelMain());
 		
 		initDefaultKeyActions();
+		
+		testButton.setBounds(10, 10, 80, 25);
+		testButton.addActionListener(savedKeyActions.get("keySetting"));
+		this.add(testButton);
 		
 		initMenuBar();
 		
@@ -156,14 +162,18 @@ public class FrameMain extends JFrame{
 	}
 	
 	private void initInputMapAndActionMap(){
-//		InputMap im1 = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		InputMap im1 = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		InputMap im2 = mainPanel.getInputMap(JComponent.WHEN_FOCUSED);
+		InputMap im3 = mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap am = mainPanel.getActionMap();
 		for(Map.Entry<String, KeyAction> entry : savedKeyActions.entrySet()){
 			pl(entry.getKey() + " ---- " + entry.getValue().defaultKeys);
 
 //			im1.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
+			
+			//work together with the "requestFocusInWindow()" of "new PanelMain(timer)" to ensure this functionality
 			im2.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
+//			im3.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
 			am.put(entry.getKey(), entry.getValue());
 		}
 	}
@@ -231,22 +241,18 @@ public class FrameMain extends JFrame{
 		
 		JMenuItem miConfigGlobalSetting = new JMenuItem("Setting");
 		miConfigGlobalSetting.setMnemonic('t');
-		miConfigGlobalSetting.addActionListener(savedKeyActions.get("battleSetting"));
+		miConfigGlobalSetting.addActionListener(savedKeyActions.get("globalSetting"));
 		mConfigGlobal.add(miConfigGlobalSetting);
 		
 		JMenuItem miConfigGlobalMap = new JMenuItem("Map");
 		miConfigGlobalMap.setMnemonic('m');
-		miConfigGlobalMap.addActionListener(savedKeyActions.get("battleMap"));
+		miConfigGlobalMap.addActionListener(savedKeyActions.get("globalMap"));
 		mConfigGlobal.add(miConfigGlobalMap);
 		
 		JMenuItem miConfigHotkey = new JMenuItem("Hot Key");
 		miConfigHotkey.setMnemonic('h');
-		miConfigHotkey.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Hot Key");
-			}
-		});
+		miConfigHotkey.addActionListener(savedKeyActions.get("keySetting"));
+		
 		mConfig.add(miConfigHotkey);
 		mConfig.add(mConfigBattle);
 		mConfig.add(mConfigGlobal);
