@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Timer;
 
 import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -65,19 +66,23 @@ public class FrameMain extends JFrame{
 	public FrameMain(){
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension fullScreen = toolkit.getScreenSize();
+		Dimension testDimension = new Dimension(200, 200);
+		
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
 		this.setLocation(0, 0);
 		this.setResizable(false);
-		this.setSize(fullScreen);
+//		this.setSize(fullScreen);
+		this.setSize(testDimension);
 		this.setTitle("Dimension Mercenary");
 		this.setUndecorated(true);
 		
-		this.add(mainPanel = new PanelMain(timer));
+//		this.add(mainPanel = new PanelMain(timer));
+		this.add(mainPanel = new PanelMain());
 		
 		initDefaultKeyActions();
-		
+		initInputMapAndActionMap();
 		initMenuBar();
 		
 		initDialogSetting();
@@ -117,7 +122,7 @@ public class FrameMain extends JFrame{
 		
 		//Global KeyAction :
 		//ctrl shirt T : Global Setting
-		savedKeyActions.put("globalSetting", new KeyAction("globalSetting", null, "Global Setting", "ctrl shirt T") {
+		savedKeyActions.put("globalSetting", new KeyAction("globalSetting", null, "Global Setting", "ctrl shift T") {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				PanelSetting panelSetting = new PanelSetting();
@@ -148,10 +153,13 @@ public class FrameMain extends JFrame{
 	
 	private void initInputMapAndActionMap(){
 		InputMap im = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		ActionMap am = mainPanel.getActionMap();
 		for(Map.Entry<String, KeyAction> entry : savedKeyActions.entrySet()){
+			pl(entry.getKey() + " ---- " + entry.getValue().defaultKeys);
+
 			im.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
+			am.put(entry.getKey(), entry.getValue());
 		}
-		
 	}
 	
 	private void initMenuBar(){
@@ -203,7 +211,7 @@ public class FrameMain extends JFrame{
 		mConfigBattle.setMnemonic('b');
 		
 		JMenuItem miConfigBattleSetting = new JMenuItem("Setting");
-		miConfigBattleSetting.setMnemonic('s');
+		miConfigBattleSetting.setMnemonic('t');
 		miConfigBattleSetting.addActionListener(savedKeyActions.get("battleSetting"));
 		mConfigBattle.add(miConfigBattleSetting);
 		
@@ -216,7 +224,7 @@ public class FrameMain extends JFrame{
 		mConfigGlobal.setMnemonic('g');
 		
 		JMenuItem miConfigGlobalSetting = new JMenuItem("Setting");
-		miConfigGlobalSetting.setMnemonic('s');
+		miConfigGlobalSetting.setMnemonic('t');
 		miConfigGlobalSetting.addActionListener(savedKeyActions.get("battleSetting"));
 		mConfigGlobal.add(miConfigGlobalSetting);
 		

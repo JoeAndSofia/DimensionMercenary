@@ -9,6 +9,10 @@ public class PanelMain extends JPanel {
 
 	private boolean doDraw = false;
 	
+	public PanelMain(){
+		System.out.println("mainPanel");
+	}
+	
 	public PanelMain(Timer timer){
 		timer.schedule(new TimerTask() {
 			
