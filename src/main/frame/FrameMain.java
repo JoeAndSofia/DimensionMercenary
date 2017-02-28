@@ -202,15 +202,11 @@ public class FrameMain extends JFrame{
 			KeyStroke keyStroke = null;
 			if("TAB".equals(defaultKey)){
 				keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0);
-				im1.put(keyStroke, entry.getKey());
-				im3.put(keyStroke, entry.getKey());
 			}else{
 				keyStroke = KeyStroke.getKeyStroke(defaultKey);
 			}
 
 //			im1.put(keyStroke, entry.getKey());
-			
-			//work together with the "requestFocusInWindow()" of "new PanelMain(timer)" to ensure this functionality
 			im2.put(keyStroke, entry.getKey());
 //			im3.put(keyStroke, entry.getKey());
 			am.put(entry.getKey(), entry.getValue());
@@ -237,6 +233,7 @@ public class FrameMain extends JFrame{
 		
 		JMenuItem miMainExit = new JMenuItem("Exit and Save");
 		miMainExit.setMnemonic('x');
+		//this exit won't provided exit actions for hot key KeyStroke.
 		miMainExit.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
