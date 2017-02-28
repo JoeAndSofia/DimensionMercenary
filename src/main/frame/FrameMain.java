@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -88,6 +89,7 @@ public class FrameMain extends JFrame{
 		initDefaultKeyActions();
 		
 		testButton.setBounds(10, 10, 80, 25);
+		testButton.setFocusable(false);
 		testButton.addActionListener(savedKeyActions.get("keySetting"));
 		this.add(testButton);
 		
@@ -109,6 +111,15 @@ public class FrameMain extends JFrame{
 	}
 	
 	private void initDefaultKeyActions(){
+		//Preserved keys :
+		savedKeyActions.put("TabShift", new KeyAction("tabShift", null, "TabShift", "TAB"){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pl("tabShift");
+				actionAfter();
+			}
+		});
+		
 		//Battle KeyAction :
 		//ctrl T : Battle Setting
 		savedKeyActions.put("battleSetting", new KeyAction("battleSetting", null, "Battle Setting", "ctrl T") {
@@ -117,6 +128,7 @@ public class FrameMain extends JFrame{
 				PanelSetting panelSetting = new PanelSetting();
 				add(panelSetting);
 				pl("battleSetting");
+				actionAfter();
 			}
 		});
 		
@@ -127,6 +139,7 @@ public class FrameMain extends JFrame{
 				PanelMap panelMap = new PanelMap();
 				add(panelMap);
 				pl("battleMap");
+				actionAfter();
 			}
 		});
 		
@@ -138,6 +151,7 @@ public class FrameMain extends JFrame{
 				PanelSetting panelSetting = new PanelSetting();
 				add(panelSetting);
 				pl("globalSetting");
+				actionAfter();
 			}
 		});		
 		
@@ -148,6 +162,7 @@ public class FrameMain extends JFrame{
 				PanelMap panelMap = new PanelMap();
 				add(panelMap);
 				pl("globalMap");
+				actionAfter();
 			}
 		});
 		
@@ -157,8 +172,13 @@ public class FrameMain extends JFrame{
 			public void actionPerformed(ActionEvent ae) {
 				keySettingDialog = new DialogKeySetting(null);
 				pl("keySetting");
+				actionAfter();
 			}
 		});
+	}
+	
+	private void actionAfter(){
+		mainPanel.requestFocusInWindow();
 	}
 	
 	private void initInputMapAndActionMap(){
@@ -167,13 +187,21 @@ public class FrameMain extends JFrame{
 		InputMap im3 = mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap am = mainPanel.getActionMap();
 		for(Map.Entry<String, KeyAction> entry : savedKeyActions.entrySet()){
-			pl(entry.getKey() + " ---- " + entry.getValue().defaultKeys);
+			String defaultKey = entry.getValue().defaultKeys;
+			KeyStroke keyStroke = null;
+			if("TAB".equals(defaultKey)){
+				keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0);
+				im1.put(keyStroke, entry.getKey());
+				im3.put(keyStroke, entry.getKey());
+			}else{
+				keyStroke = KeyStroke.getKeyStroke(defaultKey);
+			}
 
-//			im1.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
+//			im1.put(keyStroke, entry.getKey());
 			
 			//work together with the "requestFocusInWindow()" of "new PanelMain(timer)" to ensure this functionality
-			im2.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
-//			im3.put(KeyStroke.getKeyStroke(entry.getValue().defaultKeys), entry.getKey());
+			im2.put(keyStroke, entry.getKey());
+//			im3.put(keyStroke, entry.getKey());
 			am.put(entry.getKey(), entry.getValue());
 		}
 	}

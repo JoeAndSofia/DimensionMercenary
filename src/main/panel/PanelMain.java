@@ -18,7 +18,6 @@ public class PanelMain extends JPanel {
 			
 			@Override
 			public void run() {
-				requestFocusInWindow();
 				if(doDraw){
 					PanelMain.this.repaint();
 				}
