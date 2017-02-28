@@ -115,6 +115,7 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("TabShift", new KeyAction("tabShift", null, "TabShift", "TAB"){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				actionBefore();
 				pl("tabShift");
 				actionAfter();
 			}
@@ -125,6 +126,7 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("battleSetting", new KeyAction("battleSetting", null, "Battle Setting", "ctrl T") {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
+				actionBefore();
 				PanelSetting panelSetting = new PanelSetting();
 				add(panelSetting);
 				pl("battleSetting");
@@ -136,6 +138,7 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("battleMap", new KeyAction("battleMap", null, "Battle Map", "ctrl M") {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
+				actionBefore();
 				PanelMap panelMap = new PanelMap();
 				add(panelMap);
 				pl("battleMap");
@@ -148,6 +151,7 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("globalSetting", new KeyAction("globalSetting", null, "Global Setting", "ctrl shift T") {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
+				actionBefore();
 				PanelSetting panelSetting = new PanelSetting();
 				add(panelSetting);
 				pl("globalSetting");
@@ -159,6 +163,7 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("globalMap", new KeyAction("globalOption", null, "Global Map", "ctrl shift M") {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
+				actionBefore();
 				PanelMap panelMap = new PanelMap();
 				add(panelMap);
 				pl("globalMap");
@@ -170,6 +175,7 @@ public class FrameMain extends JFrame{
 		savedKeyActions.put("keySetting", new KeyAction("keySetting", null, "Key Setting", "ctrl K"){
 			@Override
 			public void actionPerformed(ActionEvent ae) {
+				actionBefore();
 				keySettingDialog = new DialogKeySetting(null);
 				pl("keySetting");
 				actionAfter();
@@ -177,8 +183,13 @@ public class FrameMain extends JFrame{
 		});
 	}
 	
+	private void actionBefore(){
+		
+	}
+	
 	private void actionAfter(){
 		mainPanel.requestFocusInWindow();
+		pl("mainPanel get focus");
 	}
 	
 	private void initInputMapAndActionMap(){
