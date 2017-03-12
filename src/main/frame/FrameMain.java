@@ -38,6 +38,23 @@ public class FrameMain extends JFrame{
 	private Timer timer = new Timer();
 	private boolean saved = false;
 	
+	//sizes
+	//frame size
+	public static final double TEST_WIDTH = 800;
+	public static final double TEST_HEIGHT = 600;
+	
+	public static double RUNTIME_WIDTH = 0;
+	public static double RUNTIME_HEIGHT = 0;
+	
+	public static float SETTING_PANEL_POSITION_X = 0.60f;
+	public static float SETTING_PANEL_POSITION_Y = 0.00f;
+	
+	public static float MAP_PANEL_POSITION_X = 0.60f;
+	public static float MAP_PANEL_POSITION_Y = 0.70f;
+	
+	//dimensions
+	public static Dimension test = new Dimension((int)TEST_WIDTH, (int)TEST_HEIGHT);
+	
 	//actions
 	public Map<String, KeyAction> savedKeyActions = new HashMap<String, KeyAction>();
 	
@@ -71,8 +88,7 @@ public class FrameMain extends JFrame{
 	public FrameMain(){
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension fullScreen = toolkit.getScreenSize();
-		Dimension testDimension = new Dimension(800, 600);
-		
+		Dimension testDimension = test;
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
@@ -110,9 +126,15 @@ public class FrameMain extends JFrame{
 		});
 	}
 	
+    public void setSize(Dimension d) {
+        super.setSize(d);
+		RUNTIME_WIDTH = d.getWidth();
+		RUNTIME_HEIGHT = d.getHeight();
+    }
+	
 	private void initDefaultKeyActions(){
 		//Preserved keys :
-		savedKeyActions.put("TabShift", new KeyAction("tabShift", null, "TabShift", "TAB"){
+		savedKeyActions.put("tabShift", new KeyAction("tabShift", null, "TabShift", "TAB"){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				actionBefore();
