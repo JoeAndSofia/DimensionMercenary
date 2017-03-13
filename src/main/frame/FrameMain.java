@@ -193,9 +193,9 @@ public class FrameMain extends JFrame{
 	}
 	
 	private void initInputMapAndActionMap(){
-		InputMap im1 = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+//		InputMap im1 = mainPanel.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		InputMap im2 = mainPanel.getInputMap(JComponent.WHEN_FOCUSED);
-		InputMap im3 = mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+//		InputMap im3 = mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		ActionMap am = mainPanel.getActionMap();
 		for(Map.Entry<String, KeyAction> entry : savedKeyActions.entrySet()){
 			String defaultKey = entry.getValue().defaultKeys;
