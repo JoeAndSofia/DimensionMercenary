@@ -27,9 +27,9 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import main.dialog.DialogKeySetting;
+import main.dialog.DialogGeneralSetting;
 import main.panel.PanelMain;
 import main.panel.PanelMap;
-import main.panel.PanelSetting;
 import entity.database.keys.KeyAction;
 import entity.setting.Setting;
 
@@ -133,15 +133,6 @@ public class FrameMain extends JFrame{
     }
 	
 	private void initDefaultKeyActions(){
-		//Preserved keys :
-		savedKeyActions.put("tabShift", new KeyAction("tabShift", null, "TabShift", "TAB"){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				actionBefore();
-				pl("tabShift");
-				actionAfter();
-			}
-		});
 		
 		//Battle KeyAction :
 		//ctrl T : Battle Setting
@@ -149,8 +140,8 @@ public class FrameMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				actionBefore();
-				PanelSetting panelSetting = new PanelSetting();
-				add(panelSetting);
+				DialogGeneralSetting dialogSetting = new DialogGeneralSetting();
+//				add(dialogSetting);
 				pl("battleSetting");
 				actionAfter();
 			}
@@ -174,7 +165,7 @@ public class FrameMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				actionBefore();
-				PanelSetting panelSetting = new PanelSetting();
+				DialogGeneralSetting panelSetting = new DialogGeneralSetting();
 				add(panelSetting);
 				pl("globalSetting");
 				actionAfter();
@@ -200,6 +191,16 @@ public class FrameMain extends JFrame{
 				actionBefore();
 				keySettingDialog = new DialogKeySetting(null);
 				pl("keySetting");
+				actionAfter();
+			}
+		});
+		
+		//Preserved keys :
+		savedKeyActions.put("tabShift", new KeyAction("tabShift", null, "TabShift", "TAB"){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				actionBefore();
+				pl("tabShift");
 				actionAfter();
 			}
 		});
